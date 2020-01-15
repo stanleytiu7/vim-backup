@@ -1,0 +1,360 @@
+" need to rename this file as .vimrc and put it in your home directory
+" =G is global autoindent ;)
+"
+"vim-plug stuff
+call plug#begin('~/.vim/plugged')
+
+" airline for status bar at bottom
+Plug 'https://github.com/vim-airline/vim-airline' 
+
+" nerdtree for file exploration
+Plug 'https://github.com/preservim/nerdtree', { 'on': 'NERDTreeToggle' } 
+
+" vim javascript for sane javascript autospacing
+Plug 'https://github.com/pangloss/vim-javascript' 
+
+" comment shortcuts
+Plug 'https://github.com/preservim/nerdcommenter' 
+
+" sensible defaults
+Plug 'https://github.com/tpope/vim-sensible' 
+
+" easy align if necessary for organization
+Plug 'https://github.com/junegunn/vim-easy-align' 
+
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
+Plug 'junegunn/fzf.vim' 
+
+" git wrapper
+Plug 'https://github.com/tpope/vim-fugitive' 
+" for seeing what lines changed in git
+Plug 'https://github.com/airblade/vim-gitgutter' 
+" note taking
+Plug 'https://github.com/xolox/vim-notes' 
+
+" solarized colors
+Plug 'https://github.com/altercation/vim-colors-solarized' 
+
+" default lang packs for a variety of languages
+Plug 'https://github.com/sheerun/vim-polyglot' 
+
+" for vim-notes
+Plug 'https://github.com/xolox/vim-misc' 
+
+" if theres a .git file vim will default to that as root
+Plug 'https://github.com/airblade/vim-rooter' 
+
+"ctags for function jump to definitions
+Plug 'https://github.com/universal-ctags/ctags'
+
+" autonomous linting
+Plug 'https://github.com/dense-analysis/ale'
+
+call plug#end()
+
+syntax on " enable syntax processing
+filetype plugin indent on 
+
+" for nerd commenter
+filetype plugin on 
+
+"COMMENTS are by using \c<space>
+"UNCOMMENT by \cu
+
+"If YOURE ME, HERE ARE THE SHORTCUTS FOR tim pope's surround
+"cs<bracket sruround><brack to change to>
+"S<bracket surround><brack to change to>
+"ysiw<bracket> to surround something
+"ds<bracket> to delete
+"
+" This is to let vim use alt as a modifier key in bash terminal
+" let c='a'
+" while c <= 'z'
+"   exec "set <A-".c.">=\e".c
+"   exec "imap \e".c." <A-".c.">"
+"   let c = nr2char(1+char2nr(c))
+" endw
+" set ttimeout ttimeoutlen=50 
+
+" turn hybrid line numbers on
+:set number relativenumber
+:set nu rnu
+
+" keep buffer open even if you close it
+:set hidden
+
+" all yanks go into unnamed register
+:set clipboard=unnamedplus
+
+" fzf as a plugin for vim
+set rtp+=~/.fzf
+
+" Always show statusline
+set laststatus=2
+
+
+" vim-jsx syntax highlighting only in .jsx
+let g:jsx_ext_required = 1
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256 " powerline shit end
+
+" for NERD commenter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" for ctags to crawl up until it finds a tag file
+set tags=./tags,tags;$HOME " vim-fugitive should take care of this
+
+
+" for vim devicons
+set guifont=<Mononoki_Nerd_Font><12>
+
+" visual autocomplete for command menu
+set wildmenu
+
+" highlight matchign brackets and parentheses etc.
+set showmatch 
+
+" search as characers are entered
+set incsearch 
+
+" highlight matches
+set hlsearch 
+
+" Enable Silver surfer for improved ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" To disable a plugin, add it's bundle name to the following list
+let g:pathogen_disabled = []
+
+" To prevent editorconfig from fighting with fugitive
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+"set foldenable                    "
+"enable folding
+"set foldlevelstart=10             "
+"open most folds by
+"default "set foldnestmax=10                "
+"10 nested fold max
+"set foldmethod=marker             "
+"tell vim to fold by sections
+"set foldlevel=0
+"
+" turn off search highlight
+nnoremap <CR> :noh<CR><CR>
+"nnoremap <C-space>:nohlsearch<CR> 
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" change windows with ctrl and movement
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+
+" cursorline stuff
+autocmd InsertEnter,InsertLeave * set cul!
+
+"enable rainbow braces
+let g:rainbow_active = 1
+
+" Formats the statusline
+set statusline=%f                           " file name
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%y      "filetype
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+
+set statusline+=\ %=                        " align left
+set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
+set statusline+=\ Col:%c                    " current column
+set statusline+=\ Buf:%n                    " Buffer number
+set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
+
+" ESLINT
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+let g:jsx_ext_required = 0
+
+" solarized dark colorscheme
+syntax enable
+set background=dark
+colorscheme solarized
+
+" awesome colorscheme, consider solarized and molokai
+"colorscheme badwolf               
+"
+" turn on line numbers
+set number
+
+" fold column"
+set foldcolumn=1                
+
+" highlight current line
+set cursorline
+
+" automatically detect filetypes
+filetype plugin on                
+
+"context highlighting for variables
+"autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+"
+" number of visual spaces per TAB 
+set tabstop=2                     
+
+" when indenting with '>', use 4 spaces width On pressing tab, insert 4 spaces
+set shiftwidth=2
+
+" change the indent vertical line color
+let g:indentLine_color_term = 239
+
+" tabs are spaces
+set expandtab                     
+
+let g:AutoPairsFlyMode = 0
+
+" changes the cursor for each mode
+let &t_SI = "\<esc>[3 q"
+let &t_SR = "\<esc>[3 q"
+let &t_EI = "\<esc>[1 q"
+
+" notes directory
+let g:notes_directories = ['~/Documents/']
+
+" ale checking
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_set_loclist = 1
+let g:ale_linters_explicit = 1
+let g:ale_open_list = 1
+let g:ale_cho_cursor = 0
+
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+
+"haskell stuff
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+"syntastic stuff
+
+"set statusline+=%{SyntasticStatuslineFlag()}
+"  set statusline+=%#warningmsg#
+"  set statusline+=%*
+
+"  let g:syntastic_javascript_checkers = ['eslint']
+"  let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
+"  let g:syntastic_always_populate_loc_list = 1
+"  let g:syntastic_auto_loc_list = 1
+"  let g:syntastic_check_on_open = 0
+"  let g:syntastic_check_on_wq = 1
+"  let g:syntastic_loc_list_height=5
+
+" " autofix eslint --fix on save:
+"    set autoread
+"     let g:syntastic_javascript_eslint_args = ['--fix']
+"     function! SyntasticCheckHook(errors)
+"       checktime
+"     endfunction
+
+"for alt-key mappings
+"for i in range(97,122)
+"  let c = nr2char(i)
+"  exec "map \e".c." <M-".c.">"
+"  exec "map! \e".c." <M-".c.">"
+"endfor
+"
+"NERDTree stuff
+let g:NERDTreeWinSize=20
+let NERDTreeQuitOnOpen=1
+
+let g:Tlist_WinWidth =20
+let g:Tlist_Use_Right_Window =1 
+"let g:NERDTreeWinPos = "right"
+
+"some custom keybindings
+"Syntastic Toggle
+map <C-F12> :SyntasticToggleMode <CR>
+map <C-N> :NERDTreeToggle <CR>
+
+" For use with CtrlP
+"set runtimepath^=~/.vim/bundle/ctrlp.vim
+"map <C-S-O> :CtrlP <CR> "Not as good as FZF
+"
+map \o :FZF <CR>
+map <C-Q> :tabclose <CR>
+"map <C-M> :TagbarToggle <CR>
+
+
+" " for
+" autocmd FileType javascript noremap <buffer>  <C-S-I> :call JsBeautify()<cr>
+" " for json
+" autocmd FileType json noremap <buffer> <C-S-I> :call JsonBeautify()<cr>
+" " for jsx
+" autocmd FileType *.jsx noremap <buffer> <C-S-I> :call JsxBeautify()<cr>
+" " for html
+" autocmd FileType html noremap <buffer> <C-S-I> :call HtmlBeautify()<cr>
+" " for css or scss
+" autocmd FileType css noremap <buffer> <C-S-I> :call CSSBeautify()<cr>
+" autocmd FileType javascript vnoremap <buffer>  <C-S-I> :call RangeJsBeautify()<cr>
+" autocmd FileType json vnoremap <buffer> <C-S-I> :call RangeJsonBeautify()<cr>
+" autocmd FileType *.jsx vnoremap <buffer> <C-S-I> :call RangeJsxBeautify()<cr>
+" autocmd FileType html vnoremap <buffer> <C-S-I> :call RangeHtmlBeautify()<cr>
+" autocmd FileType css vnoremap <buffer> <C-S-I> :call RangeCSSBeautify()<cr>
+
+"toggle text highltingin from search
+noremap <F4> :set hlsearch! hlsearch?<CR>
+
+" You Complete Me
+let g:ycm_add_preview_to_completeopt = 0
+
+
+" sliding code around in all modes
+"nnoremap <M-k> :m .-2<CR>==
+"inoremap <M-j> <Esc>:m .+1<CR>==gi
+"nnoremap <M-j> :m .+1<CR>==
+"inoremap <M-k> <Esc>:m .-2<CR>==gi
+"
+"
+"this is to enable alt key shortcuts by binding it to something else
+"execute "set <Mj>=\ej"
+"execute "set <Mk>=\ek"
+
+"vnoremap <M-j> :m '>+1<CR>gv=gv
+"vnoremap <M-k> :m '<-2<CR>gv=gv
+"nnoremap <A-j> :m .+1<CR>==
+"nnoremap <A-k> :m .-2<CR>==
+"inoremap <A-j> <Esc>:m .+1<CR>==gi
+"inoremap <A-k> <Esc>:m .-2<CR>==gi
+"
+nnoremap gb :ls<CR>:b 
+
+
+"execute "set <M-b>=\eb"
+"execute "set <M-e>=\ee"
+"execute "set <M-p>=\ep"
+"execute "set <M-n>=\en"
+
