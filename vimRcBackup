@@ -1,3 +1,9 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " need to rename this file as .vimrc and put it in your home directory
 " =G is global autoindent ;)
 "
@@ -51,13 +57,33 @@ Plug 'https://github.com/universal-ctags/ctags'
 " autonomous linting
 Plug 'https://github.com/dense-analysis/ale'
 
+" rainbow parentheses
+Plug 'https://github.com/luochen1990/rainbow'
+
+" indent lines
+Plug 'https://github.com/Yggdroot/indentLine'
+
+" rust linting
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 syntax on " enable syntax processing
 filetype plugin indent on 
 
+" number of visual spaces per TAB 
+set tabstop=4                     
+" when indenting with '>', use 4 spaces width On pressing tab, insert 4 spaces
+set shiftwidth=4
+" on pressing tab, insert shiftwidth?
+set expandtab
+
 " for nerd commenter
 filetype plugin on 
+
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
+let g:indentLine_setColors = 0 "set indent to colorscheme
 
 "COMMENTS are by using \c<space>
 "UNCOMMENT by \cu
@@ -138,7 +164,8 @@ let g:pathogen_disabled = []
 " To prevent editorconfig from fighting with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-"set foldenable                    "
+set foldenable                    "
+set foldmethod=syntax
 "enable folding
 "set foldlevelstart=10             "
 "open most folds by
@@ -209,11 +236,6 @@ filetype plugin on
 "context highlighting for variables
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 "
-" number of visual spaces per TAB 
-set tabstop=2                     
-
-" when indenting with '>', use 4 spaces width On pressing tab, insert 4 spaces
-set shiftwidth=2
 
 " change the indent vertical line color
 let g:indentLine_color_term = 239
