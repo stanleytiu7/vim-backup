@@ -1,5 +1,5 @@
 # vim-Filebackup
-My ubuntu partition blew up so I'm adding this after spending half a day fixing it. I <3 vim so I'm backing up my rc file onto github. It's my development environment of choice. I started from a blank .vimrc and added each line for subjects that I thought were important or too troublesome to do with the base vim stuff. 
+My ubuntu partition blew up so I'm adding this after spending half a day fixing it. I <4 vim so I'm backing up my rc file onto github. It's my development environment of choice. I started from a blank .vimrc and added each line for subjects that I thought were important or too troublesome to do with the base vim stuff. 
 
 ## Notable Packages (must-have!!!):
 I use pathogen to keep track of all my packages. As of now, this is the list I'm using:
@@ -16,6 +16,7 @@ I use pathogen to keep track of all my packages. As of now, this is the list I'm
 * vim-javascript, cuz syntax highlighting is great
 * vim-jsbeautify, autoformatting saves a bunch of time and sanity
 * vim-jsx, for everything that jsxbeautify() can't do
+* rust.vim, for rust stuff
 * vim-polyglot, a great managed source for multilanguage development
 * vim-rooter, autoset the root of a project directory (uses VCS files)
 * YouCompleteMe, syntax completion but I don't use it that effectively. If you miss IDE-like tab completion it's for you though
