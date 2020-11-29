@@ -40,7 +40,8 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/xolox/vim-notes' 
 
 " solarized colors
-Plug 'https://github.com/altercation/vim-colors-solarized' 
+" Plug 'https://github.com/altercation/vim-colors-solarized' 
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " default lang packs for a variety of languages
 Plug 'https://github.com/sheerun/vim-polyglot' 
@@ -67,7 +68,7 @@ Plug 'https://github.com/Yggdroot/indentLine'
 Plug 'rust-lang/rust.vim'
 
 " coc
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "coc tsserver
 " Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
@@ -77,9 +78,6 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-markdownlint', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 
-
-
-'
 call plug#end()
 
 syntax on " enable syntax processing
@@ -228,9 +226,15 @@ let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
 
 " solarized dark colorscheme
-syntax enable
-set background=dark
-colorscheme solarized
+" syntax enable
+" set background=dark
+" colorscheme solarized
+"
+syntax on
+set t_Co=256
+set cursorline
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
 
 " awesome colorscheme, consider solarized and molokai
 "colorscheme badwolf               
